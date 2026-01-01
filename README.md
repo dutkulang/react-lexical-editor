@@ -182,6 +182,16 @@ The toolbar is going to be a container at the top of the editor with the differe
 function Toolbar(){
     return (
         <div>
+            /** heading **/
+            <select title="heading">
+                <option>h1</option>
+                <option>h2</option>
+                <option>h3</option>
+                <option>h4</option>
+                <option>h5</option>
+                <option>h6</option>
+            </select>
+
             /** bold **/
             <button title="bold"><b>B</b></button>
 
@@ -209,16 +219,16 @@ function Toolbar(){
             /** subscript **/
             <button title="subscript">X<sub>2</sub></button>
 
-            /** Center **/
+            /** Center align **/
             <button title="center align text">Center</button>
 
-            /** left **/
+            /** left align **/
             <button title="left align text">left</button>
 
-            /** right **/
+            /** right align **/
             <button title="right align text">right</button>
 
-            /** justify **/
+            /** justify align **/
             <button title="justify align text">justify</button>
         </div>
     )
