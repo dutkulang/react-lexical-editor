@@ -112,4 +112,122 @@ export default Editor;
 
 ```
 
+### Add Editor to `App.jsx`
+
+```jsx
+//App.jsx
+
+import Editor from "./src/components/Editor";
+
+function App(){
+    return (
+        <>
+            <h1>Rich Text Editor</h1>
+            <Editor />
+        </>
+    )
+}
+```
+
+Since Editor is just has a wrapper we will see only the word "Rich Text Editor" on the page
+
+## Upgrade the Editor
+
+Let's add rich features like bold, italics, lists, lists, headings etc using the `RichTextPlugin` component from `@lexical/react/LexicalRichTextPlugin`
+
+RichTextPlugin component takes in several props
+
+- contentEditable: Creates a TextField field and takes in component `ContentEditable` import from "@lexical/react/LexicalContentEditable". 
+This is what will create a text field for text input.
+
+- placeholder: Placeholder text for the input field.
+
+- ErrorBoundary: takes in a component `LexicalErrorBoundary` from "@lexical/react/LexicalErrorBoundary", on handles error that with the actual editor.
+
+```jsx
+import {LexicalComposer} from "@lexical/react/LexicalComposer";
+import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin";
+import {ContentEditable} from "@lexical/react/LexicalContentEditable";
+import {LexicalErrorBoundary} from "@lexical/react/LexicalErrorBoundary";
+
+// everything else remains the same.
+
+function Editor(){
+    return (
+        <>
+            <LexicalComposer initialConfig={initialConfig}>
+                <RichTextPlugin 
+                    contentEditable={<ContentEditable/>}
+                    placeholder={<p>Write something here</p>}
+                    ErrorBoundary={<LexicalErrorBoundary/>}
+                />
+            </LexicalComposer?
+        </>
+    )
+}
+export default Editor;
+```
+
+We have created a basic editor, now lets add features
+
+### Toolbar
+
+create a file `src/components/Toolbar.jsx`
+
+The toolbar is going to be a container at the top of the editor with the different operations listed out. Similar to that of libre Office, microsoft word, google docs writer. 
+
+```jsx
+//src/components/Toolbar.jsx
+
+function Toolbar(){
+    return (
+        <div>
+            /** bold **/
+            <button title="bold"><b>B</b></button>
+
+            /** italic **/
+            <button title="italic"><i>i</i></button>
+
+            /** underline **/
+            <button title="underline"><u>U</u></button>
+
+            /** strike through **/
+            <button title="strike through"><s>abc</s></button>
+
+            /** uppercase **/
+            <button title="uppercase">ABC</button>
+
+            /** lowercase **/
+            <button title="lowercase">abc</button>
+
+            /** Capitalize **/
+            <button title="Capitalize">Abc</button>
+
+            /** superscript **/
+            <button title="superscript">X<sup>2</sup></button>
+
+            /** subscript **/
+            <button title="subscript">X<sub>2</sub></button>
+
+            /** Center **/
+            <button title="center align text">Center</button>
+
+            /** left **/
+            <button title="left align text">left</button>
+
+            /** right **/
+            <button title="right align text">right</button>
+
+            /** justify **/
+            <button title="justify align text">justify</button>
+        </div>
+    )
+}
+export default Toolbar;
+```
+
+
+
+
+
 
