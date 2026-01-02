@@ -264,3 +264,51 @@ functiom FormatCommands(){
     }
 }
 ```
+## Add History 
+
+Lexical allows the ability to redo and undo history this works by adding a lexical history plugin component to `src/Editor.jsx` file
+
+```jsx
+// Add to imports in Editor
+import {HistoryPlugin} from "@lexical/react/LexicalHistoryPlugin"
+
+function Editor(){
+    <LexicalComposerContext initialConfig={...}>
+
+
+    <HistoryPlugin />
+    </LexicalComposerContext>
+}
+
+```
+
+**Add redo and undo commands to formatCommands file**
+
+```jsx
+// src/commponents/formatCommands
+import { REDO_COMMAND, UNDO_COMMAND } from "lexical";
+
+function formatCommands(){
+    return {
+        ...
+        formatUndo:()=>{dispatchFormat(UNDO_COMMAND, undefined)},
+        formatRedo:()=>{dispatchFormat(REDO_COMMAND, undefined)},
+    }
+}
+
+```
+** Now add corresponding buttons in Toolbar **
+
+import formatCommands from "./formatCommands";
+
+function Toolbar()=>{
+    const {
+        formatUndo,
+        formatRedo,
+    } = formatCommands
+    return (
+        <button title="undo" onClick={formatUndo}>Undo</button>
+        <button title="redo" onClick={formatRedo}>Redo</button>
+    )
+}
+
