@@ -1,5 +1,5 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import {$getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND, FORMAT_ELEMENT_COMMAND,} from "lexical";
+import {$getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND, FORMAT_ELEMENT_COMMAND,REDO_COMMAND, UNDO_COMMAND} from "lexical";
 
 function FormatCommands(){
     const [editor] = useLexicalComposerContext(); // get the editor instance
@@ -22,6 +22,8 @@ function FormatCommands(){
         formatTextCenter: ()=>{dispatchFormat(FORMAT_ELEMENT_COMMAND, "center")},
         formatTextLeft: ()=>{dispatchFormat(FORMAT_ELEMENT_COMMAND, "left")},
         formatTextRight: ()=>{dispatchFormat(FORMAT_ELEMENT_COMMAND, "right")},
+        formatUndo: ()=>{dispatchFormat(UNDO_COMMAND, undefined)},
+        formatRedo: ()=>{dispatchFormat(REDO_COMMAND, undefined)}
     }
 }
 export default FormatCommands;
