@@ -182,7 +182,7 @@ The toolbar is going to be a container at the top of the editor with the differe
 function Toolbar(){
     return (
         <div>
-            /** heading **/
+            {/** heading **/}
             <select title="heading">
                 <option>h1</option>
                 <option>h2</option>
@@ -192,43 +192,43 @@ function Toolbar(){
                 <option>h6</option>
             </select>
 
-            /** bold **/
+            {/** bold **/}
             <button title="bold"><b>B</b></button>
 
-            /** italic **/
+            {/** italic **/}
             <button title="italic"><i>i</i></button>
 
-            /** underline **/
+            {/** underline **/}
             <button title="underline"><u>U</u></button>
 
-            /** strike through **/
+            {/** strike through **/}
             <button title="strike through"><s>abc</s></button>
 
-            /** uppercase **/
+            {/** uppercase **/}
             <button title="uppercase">ABC</button>
 
-            /** lowercase **/
+            {/** lowercase **/}
             <button title="lowercase">abc</button>
 
-            /** Capitalize **/
+            {/** Capitalize **/}
             <button title="Capitalize">Abc</button>
 
-            /** superscript **/
+            {/** superscript **/}
             <button title="superscript">X<sup>2</sup></button>
 
-            /** subscript **/
+            {/** subscript **/}
             <button title="subscript">X<sub>2</sub></button>
 
-            /** Center align **/
+            {/** Center align **/}
             <button title="center align text">Center</button>
 
-            /** left align **/
+            {/** left align **/}
             <button title="left align text">left</button>
 
-            /** right align **/
+            {/** right align **/}
             <button title="right align text">right</button>
 
-            /** justify align **/
+            {/** justify align **/}
             <button title="justify align text">justify</button>
         </div>
     )
@@ -236,8 +236,31 @@ function Toolbar(){
 export default Toolbar;
 ```
 
+### Format commands
 
+```jsx
+// src/components/FormatCommands.jsx
+import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
+import {FORMAT_TEXT_COMMAND} from "lexical";
 
+functiom FormatCommands(){
+    const [editor] = useLexicalComposerContext();
 
+    const dispatchFormat = (format, type)=>{
+        return editor.dispatchCommand(format, type)
+    }
 
+    return {
+        formatBold:()=>dispatchFormat(FORMAT_TEXT_COMMAND, "bold"),
+        formatUnderline:()=>dispatchFormat(FORMAT_TEXT_COMMAND, "underline"),
+        formatStrikeThrough:()=>dispatchFormat(FORMAT_TEXT_COMMAND, "strikethrough"),
+        formatItalic:()=>dispatchFormat(FORMAT_TEXT_COMMAND, "italic"),
+        formatSuperscript:()=>dispatchFormat(FORMAT_TEXT_COMMAND, "superscript"),
+        formatSubscript:()=>dispatchFormat(FORMAT_TEXT_COMMAND, "subscript"),
+        formatCapitalize:()=>dispatchFormat(FORMAT_TEXT_COMMAND, "capitalize"),
+        formatLowerCase:()=>dispatchFormat(FORMAT_TEXT_COMMAND, "lowercase"),     
+        formatUpperCase:()=>dispatchFormat(FORMAT_TEXT_COMMAND, "uppercase"),
 
+    }
+}
+```
